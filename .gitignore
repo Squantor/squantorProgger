@@ -1,2 +1,5 @@
 # kicad specific stuff
 *.net
+*.bak
+*.kicad_pcb-bak
+
