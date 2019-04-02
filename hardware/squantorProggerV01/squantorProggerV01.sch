@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:squantorProggerV01-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -59,7 +59,7 @@ F 3 "" H 1500 7150 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L SquantorUsb:USB-ID J1
+L squantorProggerV01-rescue:USB-ID-SquantorUsb J1
 U 1 1 5C82E08A
 P 950 1350
 F 0 "J1" H 975 1797 60  0000 C CNN
@@ -212,17 +212,6 @@ F 3 "" H 1350 1150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1300 1150 1350 1150
-$Comp
-L SquantorWCH:CH340E U?
-U 1 1 5C83DAAF
-P 2600 1350
-F 0 "U?" H 2600 1815 50  0000 C CNN
-F 1 "CH340E" H 2600 1724 50  0000 C CNN
-F 2 "" H 2600 1250 50  0001 C CNN
-F 3 "" H 2600 1250 50  0001 C CNN
-	1    2600 1350
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1300 1250 1450 1250
 Wire Wire Line
@@ -231,68 +220,4 @@ Text Label 1450 1250 0    50   ~ 0
 USB_D-
 Text Label 1450 1350 0    50   ~ 0
 USB_D+
-$Comp
-L power:VSS #PWR?
-U 1 1 5C83E568
-P 2200 1350
-F 0 "#PWR?" H 2200 1200 50  0001 C CNN
-F 1 "VSS" V 2217 1478 50  0000 L CNN
-F 2 "" H 2200 1350 50  0001 C CNN
-F 3 "" H 2200 1350 50  0001 C CNN
-	1    2200 1350
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5C83E80B
-P 3000 1450
-F 0 "#PWR?" H 3000 1300 50  0001 C CNN
-F 1 "+5V" V 3015 1578 50  0000 L CNN
-F 2 "" H 3000 1450 50  0001 C CNN
-F 3 "" H 3000 1450 50  0001 C CNN
-	1    3000 1450
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:C_Small C?
-U 1 1 5C83E858
-P 2600 750
-F 0 "C?" V 2371 750 50  0000 C CNN
-F 1 "1u" V 2462 750 50  0000 C CNN
-F 2 "SquantorRcl:C_0603" H 2600 750 50  0001 C CNN
-F 3 "~" H 2600 750 50  0001 C CNN
-	1    2600 750 
-	0    1    1    0   
-$EndComp
-$Comp
-L power:VSS #PWR?
-U 1 1 5C83E8B1
-P 2450 750
-F 0 "#PWR?" H 2450 600 50  0001 C CNN
-F 1 "VSS" V 2467 878 50  0000 L CNN
-F 2 "" H 2450 750 50  0001 C CNN
-F 3 "" H 2450 750 50  0001 C CNN
-	1    2450 750 
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	2950 1150 3000 1150
-Wire Wire Line
-	3000 1150 3000 750 
-Wire Wire Line
-	3000 750  2700 750 
-Wire Wire Line
-	2200 1350 2250 1350
-Wire Wire Line
-	2950 1450 3000 1450
-Wire Wire Line
-	2250 1250 2200 1250
-Wire Wire Line
-	2250 1150 2200 1150
-Text Label 2200 1150 2    50   ~ 0
-USB_D+
-Text Label 2200 1250 2    50   ~ 0
-USB_D-
-Wire Wire Line
-	2500 750  2450 750 
 $EndSCHEMATC
