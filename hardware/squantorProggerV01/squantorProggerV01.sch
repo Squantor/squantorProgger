@@ -1,10 +1,11 @@
 EESchema Schematic File Version 4
 LIBS:squantorProggerV01-cache
+LIBS:LPC82X_JDH20-cache
 EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 1
+Sheet 1 2
 Title ""
 Date ""
 Rev ""
@@ -16,24 +17,24 @@ Comment4 ""
 $EndDescr
 $Comp
 L SquantorLabels:VYYYYMMDD N2
-U 1 1 5A1357A5
-P 850 7700
-F 0 "N2" H 850 7800 60  0000 C CNN
-F 1 "20190308" H 850 7700 60  0000 C CNN
-F 2 "SquantorLabels:Label_version" H 850 7700 60  0001 C CNN
-F 3 "" H 850 7700 60  0001 C CNN
-	1    850  7700
+U 1 1 5CA40CAA
+P 850 7650
+F 0 "N2" H 850 7750 60  0000 C CNN
+F 1 "20190402" H 850 7650 60  0000 C CNN
+F 2 "SquantorLabels:Label_version" H 850 7650 60  0001 C CNN
+F 3 "" H 850 7650 60  0001 C CNN
+	1    850  7650
 	1    0    0    -1  
 $EndComp
 $Comp
 L SquantorLabels:OHWLOGO N1
-U 1 1 5A135869
-P 850 7350
-F 0 "N1" H 850 7500 60  0000 C CNN
-F 1 "OHWLOGO" H 850 7200 60  0000 C CNN
-F 2 "Symbols:OSHW-Symbol_6.7x6mm_SilkScreen" H 850 7350 60  0001 C CNN
-F 3 "" H 850 7350 60  0001 C CNN
-	1    850  7350
+U 1 1 5CA40CAB
+P 850 7250
+F 0 "N1" H 850 7400 60  0000 C CNN
+F 1 "OHWLOGO" H 850 7100 60  0000 C CNN
+F 2 "Symbol:OSHW-Symbol_6.7x6mm_SilkScreen" H 850 7250 60  0001 C CNN
+F 3 "" H 850 7250 60  0001 C CNN
+	1    850  7250
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -59,28 +60,6 @@ F 3 "" H 1500 7150 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L squantorProggerV01-rescue:USB-ID-SquantorUsb J1
-U 1 1 5C82E08A
-P 950 1350
-F 0 "J1" H 975 1797 60  0000 C CNN
-F 1 "USB-ID" H 975 1691 60  0000 C CNN
-F 2 "SquantorUsb:USB-muB-SMD_TH" H 1100 1400 60  0001 C CNN
-F 3 "" H 1100 1400 60  0001 C CNN
-	1    950  1350
-	1    0    0    -1  
-$EndComp
-$Comp
-L SquantorConnectors:JTAG_2X05_IN J2
-U 1 1 5C82F4B4
-P 1150 2150
-F 0 "J2" H 1150 2637 60  0000 C CNN
-F 1 "JTAG_2X05_IN" H 1150 2531 60  0000 C CNN
-F 2 "SquantorConnectors:Header-0127-2X05-H006" H 1150 2300 60  0001 C CNN
-F 3 "" H 1150 2300 60  0001 C CNN
-	1    1150 2150
-	-1   0    0    -1  
-$EndComp
-$Comp
 L SquantorConnectors:JTAG_2X05_OUT J3
 U 1 1 5C82F5E3
 P 9900 2350
@@ -90,28 +69,6 @@ F 2 "SquantorConnectors:Header-Shr-0127-2X05-H006" H 9900 2500 60  0001 C CNN
 F 3 "" H 9900 2500 60  0001 C CNN
 	1    9900 2350
 	1    0    0    -1  
-$EndComp
-$Comp
-L power:VSS #PWR0101
-U 1 1 5C82FAFA
-P 1350 1550
-F 0 "#PWR0101" H 1350 1400 50  0001 C CNN
-F 1 "VSS" V 1367 1678 50  0000 L CNN
-F 2 "" H 1350 1550 50  0001 C CNN
-F 3 "" H 1350 1550 50  0001 C CNN
-	1    1350 1550
-	0    1    1    0   
-$EndComp
-$Comp
-L power:VSS #PWR0102
-U 1 1 5C82FB3D
-P 600 2400
-F 0 "#PWR0102" H 600 2250 50  0001 C CNN
-F 1 "VSS" V 617 2528 50  0000 L CNN
-F 2 "" H 600 2400 50  0001 C CNN
-F 3 "" H 600 2400 50  0001 C CNN
-	1    600  2400
-	1    0    0    1   
 $EndComp
 $Comp
 L power:VSS #PWR0103
@@ -136,88 +93,900 @@ Connection ~ 10450 2350
 Wire Wire Line
 	10400 2350 10450 2350
 Wire Wire Line
-	650  2050 600  2050
-Wire Wire Line
-	600  2050 600  2150
-Wire Wire Line
-	650  2150 600  2150
-Connection ~ 600  2150
-Wire Wire Line
-	650  2350 600  2350
-Wire Wire Line
-	600  2350 600  2150
-Wire Wire Line
-	1300 1550 1350 1550
-Wire Wire Line
-	600  2400 600  2350
-Connection ~ 600  2350
-Wire Wire Line
 	10450 2600 10450 2550
 Connection ~ 10450 2550
 Wire Wire Line
-	650  1950 600  1950
+	1500 800  1550 800 
+Text Label 1550 1000 0    50   ~ 0
+USB_D+
 Wire Wire Line
-	600  1950 600  1900
+	1500 1200 1550 1200
+$Comp
+L Device:R_Small R1
+U 1 1 5C92C64E
+P 1700 1250
+F 0 "R1" H 1759 1296 50  0000 L CNN
+F 1 "0" H 1759 1205 50  0000 L CNN
+F 2 "SquantorRcl:R_0402_hand" H 1700 1250 50  0001 C CNN
+F 3 "~" H 1700 1250 50  0001 C CNN
+	1    1700 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1500 1100 1700 1100
+Wire Wire Line
+	1700 1100 1700 1150
+Wire Wire Line
+	1700 1350 1700 1400
+Wire Wire Line
+	1500 900  1550 900 
+Wire Wire Line
+	1550 1000 1500 1000
 $Comp
 L Device:C_Small C1
-U 1 1 5C830A08
-P 850 800
-F 0 "C1" V 621 800 50  0000 C CNN
-F 1 "100n" V 712 800 50  0000 C CNN
-F 2 "SquantorRcl:C_0805" H 850 800 50  0001 C CNN
-F 3 "~" H 850 800 50  0001 C CNN
-	1    850  800 
-	0    1    1    0   
+U 1 1 5C92E663
+P 800 1150
+F 0 "C1" H 708 1196 50  0000 R CNN
+F 1 "100n" H 708 1105 50  0000 R CNN
+F 2 "SquantorRcl:C_0805" H 800 1150 50  0001 C CNN
+F 3 "~" H 800 1150 50  0001 C CNN
+	1    800  1150
+	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	850  1000 800  1000
+Wire Wire Line
+	800  1000 800  1050
 $Comp
-L power:VDD #PWR0104
-U 1 1 5C830AEB
-P 600 1900
-F 0 "#PWR0104" H 600 1750 50  0001 C CNN
-F 1 "VDD" H 617 2073 50  0000 C CNN
-F 2 "" H 600 1900 50  0001 C CNN
-F 3 "" H 600 1900 50  0001 C CNN
-	1    600  1900
+L SquantorUsb:USB-ID J1
+U 1 1 5C92FD3B
+P 1150 1000
+F 0 "J1" H 1175 1447 60  0000 C CNN
+F 1 "USB-ID" H 1175 1341 60  0000 C CNN
+F 2 "SquantorUsb:USB-muB-SMD_TH" H 1300 1050 60  0001 C CNN
+F 3 "" H 1300 1050 60  0001 C CNN
+	1    1150 1000
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:VSS #PWR0105
-U 1 1 5C830B0D
-P 1000 800
-F 0 "#PWR0105" H 1000 650 50  0001 C CNN
-F 1 "VSS" V 1017 928 50  0000 L CNN
-F 2 "" H 1000 800 50  0001 C CNN
-F 3 "" H 1000 800 50  0001 C CNN
-	1    1000 800 
-	0    1    -1   0   
+L Device:C_Small C2
+U 1 1 5C931872
+P 2100 1000
+F 0 "C2" H 1950 1100 50  0000 L CNN
+F 1 "100n" H 1900 900 50  0000 L CNN
+F 2 "SquantorRcl:C_0603" H 2100 1000 50  0001 C CNN
+F 3 "~" H 2100 1000 50  0001 C CNN
+	1    2100 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Ferrite_Bead_Small FB1
+U 1 1 5C9338DB
+P 2500 850
+F 0 "FB1" V 2750 850 50  0000 C CNN
+F 1 "600" V 2650 850 50  0000 C CNN
+F 2 "SquantorRcl:R_0603_hand" V 2430 850 50  0001 C CNN
+F 3 "~" H 2500 850 50  0001 C CNN
+	1    2500 850 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C_Small C3
+U 1 1 5C9348E3
+P 2650 1000
+F 0 "C3" H 2742 1046 50  0000 L CNN
+F 1 "1u" H 2742 955 50  0000 L CNN
+F 2 "SquantorRcl:C_0603" H 2650 1000 50  0001 C CNN
+F 3 "~" H 2650 1000 50  0001 C CNN
+	1    2650 1000
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	650  1350 600  1350
+	2100 1200 2100 1100
 Wire Wire Line
-	600  1350 600  800 
+	2100 900  2100 850 
 Wire Wire Line
-	600  800  750  800 
+	2100 850  2150 850 
+Connection ~ 2100 850 
 Wire Wire Line
-	1000 800  950  800 
+	2600 850  2650 850 
+Wire Wire Line
+	2650 850  2650 900 
+Connection ~ 2650 850 
+Wire Wire Line
+	1700 1400 1550 1400
+Wire Wire Line
+	800  1250 800  1400
+Wire Wire Line
+	1550 1200 1550 1400
+Connection ~ 1550 1400
+Text Label 3550 900  2    50   ~ 0
+USB_D-
+Text Label 3550 1000 2    50   ~ 0
+USB_D+
+Text Label 4450 900  0    50   ~ 0
+RXI
+Text Label 4450 1000 0    50   ~ 0
+TXO
+Text Label 4450 1100 0    50   ~ 0
+CTSI
+Text Label 4450 1200 0    50   ~ 0
+RTSO
+Wire Wire Line
+	3550 900  3600 900 
+Wire Wire Line
+	3600 1000 3550 1000
+Wire Wire Line
+	4400 900  4450 900 
+Wire Wire Line
+	4450 1000 4400 1000
+Wire Wire Line
+	4400 1100 4450 1100
+Wire Wire Line
+	4450 1200 4400 1200
+Text Label 1550 800  0    50   ~ 0
+VBUS
+Text Label 850  1500 0    50   ~ 0
+VSS
+Text Label 2150 750  0    50   ~ 0
+VBUS
+Text Label 2100 1200 0    50   ~ 0
+VSS
+Text Label 3550 1400 2    50   ~ 0
+VBUS_FILT
+Text Label 3550 1500 2    50   ~ 0
+VSS
+Wire Wire Line
+	3550 1400 3600 1400
+Wire Wire Line
+	3600 1500 3550 1500
+Wire Wire Line
+	3600 1300 3550 1300
+Wire Wire Line
+	2500 1600 2450 1600
+Wire Wire Line
+	2450 1800 2500 1800
 $Comp
-L power:+5V #PWR0106
-U 1 1 5C8314E9
-P 1350 1150
-F 0 "#PWR0106" H 1350 1000 50  0001 C CNN
-F 1 "+5V" V 1365 1278 50  0000 L CNN
-F 2 "" H 1350 1150 50  0001 C CNN
-F 3 "" H 1350 1150 50  0001 C CNN
-	1    1350 1150
+L Device:C_Small C4
+U 1 1 5CA0EAEE
+P 2750 2050
+F 0 "C4" V 2700 2150 50  0000 C CNN
+F 1 "1u" V 2700 1950 50  0000 C CNN
+F 2 "SquantorRcl:C_0603" H 2750 2050 50  0001 C CNN
+F 3 "~" H 2750 2050 50  0001 C CNN
+	1    2750 2050
+	0    1    1    0   
+$EndComp
+Text Label 2600 2050 2    50   ~ 0
+VSS
+Text Label 2900 2050 0    50   ~ 0
+VDD
+Wire Wire Line
+	2600 2050 2650 2050
+Wire Wire Line
+	2900 2050 2850 2050
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5CA4026D
+P 2700 850
+F 0 "#FLG0101" H 2700 925 50  0001 C CNN
+F 1 "PWR_FLAG" V 2700 978 50  0000 L CNN
+F 2 "" H 2700 850 50  0001 C CNN
+F 3 "~" H 2700 850 50  0001 C CNN
+	1    2700 850 
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	1300 1150 1350 1150
+	2700 850  2650 850 
+$Comp
+L Device:R_Small R3
+U 1 1 5CA52544
+P 2650 2300
+F 0 "R3" V 2600 2450 50  0000 C CNN
+F 1 "1K" V 2650 2300 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" H 2650 2300 50  0001 C CNN
+F 3 "~" H 2650 2300 50  0001 C CNN
+	1    2650 2300
+	0    1    1    0   
+$EndComp
+Text Label 2500 2300 2    50   ~ 0
+VDD
+$Comp
+L Device:LED D1
+U 1 1 5CA5351F
+P 2950 2300
+F 0 "D1" H 2800 2400 50  0000 C CNN
+F 1 "RED" H 3050 2400 50  0000 C CNN
+F 2 "SquantorDiodes:D_0603_hand" H 2950 2300 50  0001 C CNN
+F 3 "~" H 2950 2300 50  0001 C CNN
+	1    2950 2300
+	-1   0    0    1   
+$EndComp
+Text Label 3150 2300 0    50   ~ 0
+VSS
 Wire Wire Line
-	1300 1250 1450 1250
+	2500 2300 2550 2300
 Wire Wire Line
-	1300 1350 1450 1350
-Text Label 1450 1250 0    50   ~ 0
+	2750 2300 2800 2300
+Wire Wire Line
+	3100 2300 3150 2300
+$Comp
+L Device:R_Small R2
+U 1 1 5C9C65BC
+P 2250 850
+F 0 "R2" V 2200 1000 50  0000 C CNN
+F 1 "Fuse" V 2350 850 50  0000 C CNN
+F 2 "SquantorRcl:R_0603_hand" H 2250 850 50  0001 C CNN
+F 3 "~" H 2250 850 50  0001 C CNN
+	1    2250 850 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2400 850  2350 850 
+Text Label 2600 650  2    50   ~ 0
+VBUS_FILT
+Text Label 2450 1700 2    50   ~ 0
+VBUS_FILT
+Text Label 3550 1300 2    50   ~ 0
+VDD
+$Sheet
+S 3600 800  800  800 
+U 5CA4228E
+F0 "HT42B534 application example" 50
+F1 "HT42B534_application.sch" 50
+F2 "VSS" I L 3600 1500 50 
+F3 "VDD" I L 3600 1400 50 
+F4 "VDDIO" I L 3600 1300 50 
+F5 "V33O" O L 3600 1200 50 
+F6 "USB_DM" B L 3600 900 50 
+F7 "USB_DP" B L 3600 1000 50 
+F8 "RXDI" I R 4400 900 50 
+F9 "RTSO" O R 4400 1200 50 
+F10 "TXO" O R 4400 1000 50 
+F11 "CTSI" I R 4400 1100 50 
+$EndSheet
+Wire Wire Line
+	800  1400 1550 1400
+Wire Wire Line
+	800  1400 800  1500
+Wire Wire Line
+	800  1500 850  1500
+Connection ~ 800  1400
+Wire Wire Line
+	2100 750  2150 750 
+Wire Wire Line
+	2100 750  2100 850 
+Wire Wire Line
+	2650 650  2600 650 
+Wire Wire Line
+	2650 650  2650 850 
+Wire Wire Line
+	2650 1100 2650 1200
+Text Label 2650 1200 0    50   ~ 0
+VSS
+NoConn ~ 3600 1200
+Text Label 2450 1600 2    50   ~ 0
+VSS
+Text Label 2450 1800 2    50   ~ 0
+VDD
+$Comp
+L Device:C C11
+U 1 1 5BD2C78F
+P 6400 5450
+F 0 "C11" H 6515 5496 50  0000 L CNN
+F 1 "100n" H 6515 5405 50  0000 L CNN
+F 2 "SquantorRcl:C_0402" H 6438 5300 50  0001 C CNN
+F 3 "~" H 6400 5450 50  0001 C CNN
+	1    6400 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C8
+U 1 1 5BD2C956
+P 6100 5450
+F 0 "C8" H 6215 5496 50  0000 L CNN
+F 1 "1u" H 6215 5405 50  0000 L CNN
+F 2 "SquantorRcl:C_0603" H 6138 5300 50  0001 C CNN
+F 3 "~" H 6100 5450 50  0001 C CNN
+	1    6100 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Ferrite_Bead_Small FB3
+U 1 1 5BD2CA8D
+P 5950 5250
+F 0 "FB3" V 5713 5250 50  0000 C CNN
+F 1 "FB" V 6050 4800 50  0000 C CNN
+F 2 "SquantorRcl:C_0402" V 5880 5250 50  0001 C CNN
+F 3 "~" H 5950 5250 50  0001 C CNN
+	1    5950 5250
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Ferrite_Bead_Small FB4
+U 1 1 5BD2CAEC
+P 5950 5650
+F 0 "FB4" V 5713 5650 50  0000 C CNN
+F 1 "FB" V 6050 5350 50  0000 C CNN
+F 2 "SquantorRcl:C_0402" V 5880 5650 50  0001 C CNN
+F 3 "~" H 5950 5650 50  0001 C CNN
+	1    5950 5650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6050 5250 6100 5250
+Wire Wire Line
+	6650 5350 6600 5350
+Wire Wire Line
+	6600 5350 6600 5650
+Wire Wire Line
+	6600 5650 6400 5650
+Wire Wire Line
+	6100 5300 6100 5250
+Connection ~ 6100 5250
+Wire Wire Line
+	6100 5250 6250 5250
+Wire Wire Line
+	6100 5600 6100 5650
+Connection ~ 6100 5650
+Wire Wire Line
+	6100 5650 6050 5650
+Wire Wire Line
+	6400 5650 6400 5600
+Connection ~ 6400 5650
+Wire Wire Line
+	6400 5650 6250 5650
+Wire Wire Line
+	6400 5300 6400 5250
+Connection ~ 6400 5250
+Wire Wire Line
+	6400 5250 6650 5250
+$Comp
+L Device:C C10
+U 1 1 5BD2CE0D
+P 6400 4950
+F 0 "C10" H 6515 4996 50  0000 L CNN
+F 1 "100n" H 6515 4905 50  0000 L CNN
+F 2 "SquantorRcl:C_0402" H 6438 4800 50  0001 C CNN
+F 3 "~" H 6400 4950 50  0001 C CNN
+	1    6400 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C7
+U 1 1 5BD2CE41
+P 6100 4950
+F 0 "C7" H 6215 4996 50  0000 L CNN
+F 1 "1u" H 6215 4905 50  0000 L CNN
+F 2 "SquantorRcl:C_0603" H 6138 4800 50  0001 C CNN
+F 3 "~" H 6100 4950 50  0001 C CNN
+	1    6100 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Ferrite_Bead_Small FB2
+U 1 1 5BD2CE7B
+P 5950 4750
+F 0 "FB2" V 5713 4750 50  0000 C CNN
+F 1 "FB" V 5804 4750 50  0000 C CNN
+F 2 "SquantorRcl:C_0402" V 5880 4750 50  0001 C CNN
+F 3 "~" H 5950 4750 50  0001 C CNN
+	1    5950 4750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6650 5050 6600 5050
+Wire Wire Line
+	6600 5050 6600 4750
+Wire Wire Line
+	6600 4750 6400 4750
+Wire Wire Line
+	5850 4750 5800 4750
+Wire Wire Line
+	6100 4800 6100 4750
+Connection ~ 6100 4750
+Wire Wire Line
+	6100 4750 6050 4750
+Wire Wire Line
+	6400 4800 6400 4750
+Connection ~ 6400 4750
+Wire Wire Line
+	6400 4750 6100 4750
+Wire Wire Line
+	6650 5150 6400 5150
+Wire Wire Line
+	6100 5100 6100 5150
+Connection ~ 6100 5150
+Wire Wire Line
+	6100 5150 5750 5150
+Wire Wire Line
+	6400 5100 6400 5150
+Connection ~ 6400 5150
+Wire Wire Line
+	6400 5150 6100 5150
+Wire Wire Line
+	5850 5250 5800 5250
+Wire Wire Line
+	5850 5650 5750 5650
+$Comp
+L SquantorConnectors:JTAG_2X05 J2
+U 1 1 5BD303CB
+P 4450 5150
+F 0 "J2" H 4450 5637 60  0000 C CNN
+F 1 "JTAG_2X05" H 4450 5531 60  0000 C CNN
+F 2 "SquantorConnectors:Header-0127-2X05-H006" H 4450 5300 60  0001 C CNN
+F 3 "" H 4450 5300 60  0001 C CNN
+	1    4450 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4950 5050 5000 5050
+Wire Wire Line
+	5000 5050 5000 5150
+Wire Wire Line
+	4950 5350 5000 5350
+Connection ~ 5000 5350
+Wire Wire Line
+	4950 5150 5000 5150
+Connection ~ 5000 5150
+Wire Wire Line
+	5000 5150 5000 5350
+Wire Wire Line
+	4950 4950 5000 4950
+$Comp
+L Device:R R7
+U 1 1 5BD32184
+P 3750 4950
+F 0 "R7" V 3700 4800 50  0000 C CNN
+F 1 "100" V 3750 4950 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 3680 4950 50  0001 C CNN
+F 3 "~" H 3750 4950 50  0001 C CNN
+	1    3750 4950
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R8
+U 1 1 5BD3223D
+P 3750 5050
+F 0 "R8" V 3700 4900 50  0000 C CNN
+F 1 "100" V 3750 5050 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 3680 5050 50  0001 C CNN
+F 3 "~" H 3750 5050 50  0001 C CNN
+	1    3750 5050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3950 4950 3900 4950
+Wire Wire Line
+	3900 5050 3950 5050
+Wire Wire Line
+	3600 5050 3500 5050
+Wire Wire Line
+	3600 4950 3500 4950
+Text Label 3500 4950 2    50   ~ 0
+PIO0_2
+Text Label 3500 5050 2    50   ~ 0
+PIO0_3
+$Comp
+L Device:R R9
+U 1 1 5BD34D15
+P 3750 5350
+F 0 "R9" V 3700 5200 50  0000 C CNN
+F 1 "100" V 3750 5350 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 3680 5350 50  0001 C CNN
+F 3 "~" H 3750 5350 50  0001 C CNN
+	1    3750 5350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3950 5350 3900 5350
+Wire Wire Line
+	3600 5350 3500 5350
+Text Label 3500 5350 2    50   ~ 0
+RESET
+Text Label 5650 3300 2    50   ~ 0
+RESET
+Wire Wire Line
+	5700 3300 5650 3300
+Wire Wire Line
+	5700 3100 5650 3100
+Wire Wire Line
+	5700 3000 5650 3000
+Text Label 5650 3800 2    50   ~ 0
+PIO0_12
+Wire Wire Line
+	5700 3800 5650 3800
+Wire Wire Line
+	5700 2800 5650 2800
+Wire Wire Line
+	5700 2900 5650 2900
+Wire Wire Line
+	5700 3200 5650 3200
+Wire Wire Line
+	5700 3400 5650 3400
+Wire Wire Line
+	5650 3500 5700 3500
+Wire Wire Line
+	5700 3600 5650 3600
+Wire Wire Line
+	5700 3700 5650 3700
+Wire Wire Line
+	5700 3900 5650 3900
+Wire Wire Line
+	5700 4000 5650 4000
+Wire Wire Line
+	5700 4100 5650 4100
+Wire Wire Line
+	5700 4200 5650 4200
+Wire Wire Line
+	5700 4300 5650 4300
+Text Label 5650 2800 2    50   ~ 0
+PIO0_0
+Text Label 5650 2900 2    50   ~ 0
+PIO0_1
+Text Label 5650 3200 2    50   ~ 0
+PIO0_4
+Text Label 5650 3000 2    50   ~ 0
+PIO0_2
+Text Label 5650 3100 2    50   ~ 0
+PIO0_3
+Text Label 5650 3400 2    50   ~ 0
+PIO0_8
+Text Label 5650 3500 2    50   ~ 0
+PIO0_9
+Text Label 5650 3600 2    50   ~ 0
+PIO0_10
+Text Label 5650 3700 2    50   ~ 0
+PIO0_11
+Text Label 5650 3900 2    50   ~ 0
+PIO0_13
+Text Label 5650 4000 2    50   ~ 0
+PIO0_14
+Text Label 5650 4100 2    50   ~ 0
+PIO0_15
+Text Label 5650 4200 2    50   ~ 0
+PIO0_17
+Text Label 5650 4300 2    50   ~ 0
+PIO0_23
+$Comp
+L Device:C C9
+U 1 1 5BE10538
+P 6300 6500
+F 0 "C9" H 6415 6546 50  0000 L CNN
+F 1 "18p" H 6415 6455 50  0000 L CNN
+F 2 "SquantorRcl:C_0402" H 6338 6350 50  0001 C CNN
+F 3 "~" H 6300 6500 50  0001 C CNN
+	1    6300 6500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C6
+U 1 1 5BE10822
+P 5900 6500
+F 0 "C6" H 6015 6546 50  0000 L CNN
+F 1 "18p" H 6015 6455 50  0000 L CNN
+F 2 "SquantorRcl:C_0402" H 5938 6350 50  0001 C CNN
+F 3 "~" H 5900 6500 50  0001 C CNN
+	1    5900 6500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 6650 5900 6700
+Wire Wire Line
+	6300 6650 6300 6700
+Wire Wire Line
+	5950 6100 5900 6100
+Wire Wire Line
+	5900 6100 5900 6350
+Wire Wire Line
+	6250 6100 6300 6100
+Wire Wire Line
+	6300 6100 6300 6350
+Wire Wire Line
+	5900 6100 5850 6100
+Connection ~ 5900 6100
+Wire Wire Line
+	6300 6100 6350 6100
+Connection ~ 6300 6100
+Wire Wire Line
+	6100 5900 6100 5850
+Wire Wire Line
+	6100 6350 6100 6300
+$Comp
+L Device:R R6
+U 1 1 5BECCB56
+P 3750 4700
+F 0 "R6" V 3700 4550 50  0000 C CNN
+F 1 "100k" V 3750 4700 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 3680 4700 50  0001 C CNN
+F 3 "~" H 3750 4700 50  0001 C CNN
+	1    3750 4700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R5
+U 1 1 5BECCC51
+P 3750 4600
+F 0 "R5" V 3700 4450 50  0000 C CNN
+F 1 "100k" V 3750 4600 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 3680 4600 50  0001 C CNN
+F 3 "~" H 3750 4600 50  0001 C CNN
+	1    3750 4600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3950 4700 3900 4700
+Wire Wire Line
+	3900 4600 3950 4600
+Text Label 3500 4700 2    50   ~ 0
+PIO0_3
+Text Label 3500 4600 2    50   ~ 0
+PIO0_2
+Wire Wire Line
+	3600 4700 3500 4700
+Wire Wire Line
+	3600 4600 3500 4600
+$Comp
+L Device:Crystal_GND24 Y1
+U 1 1 5BE1D5EF
+P 6100 6100
+F 0 "Y1" H 5900 6300 50  0000 L CNN
+F 1 "12MHz" H 6350 5900 50  0000 L CNN
+F 2 "SquantorCrystal:Crystal_3225_4" H 6100 6100 50  0001 C CNN
+F 3 "~" H 6100 6100 50  0001 C CNN
+	1    6100 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 5BD6A440
+P 4350 4200
+F 0 "C5" H 4465 4246 50  0000 L CNN
+F 1 "10u" H 4465 4155 50  0000 L CNN
+F 2 "SquantorRcl:C_0805" H 4388 4050 50  0001 C CNN
+F 3 "~" H 4350 4200 50  0001 C CNN
+	1    4350 4200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4150 4200 4200 4200
+Wire Wire Line
+	4500 4200 4550 4200
+Text Label 5850 6100 2    50   ~ 0
+PIO0_9
+Text Label 6350 6100 0    50   ~ 0
+PIO0_8
+$Comp
+L Device:R R4
+U 1 1 5BD88002
+P 3750 4500
+F 0 "R4" V 3700 4350 50  0000 C CNN
+F 1 "100K" V 3750 4500 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 3680 4500 50  0001 C CNN
+F 3 "~" H 3750 4500 50  0001 C CNN
+	1    3750 4500
+	0    1    1    0   
+$EndComp
+Text Label 3500 4500 2    50   ~ 0
+RESET
+Wire Wire Line
+	3500 4500 3600 4500
+Wire Wire Line
+	3900 4500 3950 4500
+Wire Wire Line
+	5800 5250 5800 4750
+Connection ~ 5800 4750
+Wire Wire Line
+	5800 4750 5750 4750
+$Comp
+L SquantorNxp:LPC824M201JDH20 U2
+U 2 1 5BE68108
+P 6400 3400
+F 0 "U2" H 7119 3292 45  0000 L CNN
+F 1 "LPC824M201JDH20" H 7119 3208 45  0000 L CNN
+F 2 "SquantorIC:SOT360" H 6680 3050 20  0001 C CNN
+F 3 "" H 6650 2900 60  0000 C CNN
+	2    6400 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L SquantorNxp:LPC824M201JDH20 U2
+U 1 1 5BE681B3
+P 6900 5200
+F 0 "U2" H 7078 5242 45  0000 L CNN
+F 1 "LPC824M201JDH20" H 7078 5158 45  0000 L CNN
+F 2 "SquantorIC:SOT360" H 7180 4850 20  0001 C CNN
+F 3 "" H 7150 4700 60  0000 C CNN
+	1    6900 5200
+	1    0    0    -1  
+$EndComp
+Text Label 5750 5150 2    50   ~ 0
+VSS
+Text Label 4150 4200 2    50   ~ 0
+VSS
+Text Label 3950 4700 0    50   ~ 0
+VSS
+Text Label 4850 5550 2    50   ~ 0
+VSS
+Wire Wire Line
+	5000 5550 4850 5550
+Wire Wire Line
+	5000 5350 5000 5550
+Text Label 4850 4800 2    50   ~ 0
+VDD
+Wire Wire Line
+	5000 4800 4850 4800
+Wire Wire Line
+	5000 4800 5000 4950
+NoConn ~ 3950 5250
+NoConn ~ 3950 5150
+Text Label 3950 4600 0    50   ~ 0
+VDD
+Text Label 3950 4500 0    50   ~ 0
+VDD
+Text Label 4550 4200 0    50   ~ 0
+VDD
+Text Label 5750 4750 2    50   ~ 0
+VDD
+Text Label 5750 5650 2    50   ~ 0
+VSS
+Text Label 6100 5850 2    50   ~ 0
+VSS
+Text Label 6100 6350 0    50   ~ 0
+VSS
+Text Label 5900 6700 3    50   ~ 0
+VSS
+Text Label 6300 6700 3    50   ~ 0
+VSS
+$Comp
+L Device:R R13
+U 1 1 5CB554E1
+P 9200 2150
+F 0 "R13" V 9150 2000 50  0000 C CNN
+F 1 "100" V 9200 2150 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 9130 2150 50  0001 C CNN
+F 3 "~" H 9200 2150 50  0001 C CNN
+	1    9200 2150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R14
+U 1 1 5CB56FA1
+P 9200 2250
+F 0 "R14" V 9150 2100 50  0000 C CNN
+F 1 "100" V 9200 2250 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 9130 2250 50  0001 C CNN
+F 3 "~" H 9200 2250 50  0001 C CNN
+	1    9200 2250
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R15
+U 1 1 5CB57190
+P 9200 2350
+F 0 "R15" V 9150 2200 50  0000 C CNN
+F 1 "100" V 9200 2350 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 9130 2350 50  0001 C CNN
+F 3 "~" H 9200 2350 50  0001 C CNN
+	1    9200 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R16
+U 1 1 5CB5735C
+P 9200 2450
+F 0 "R16" V 9150 2300 50  0000 C CNN
+F 1 "100" V 9200 2450 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 9130 2450 50  0001 C CNN
+F 3 "~" H 9200 2450 50  0001 C CNN
+	1    9200 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R17
+U 1 1 5CB57E07
+P 9200 2550
+F 0 "R17" V 9150 2400 50  0000 C CNN
+F 1 "100" V 9200 2550 50  0000 C CNN
+F 2 "SquantorRcl:R_0402_hand" V 9130 2550 50  0001 C CNN
+F 3 "~" H 9200 2550 50  0001 C CNN
+	1    9200 2550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9400 2150 9350 2150
+Wire Wire Line
+	9400 2250 9350 2250
+Wire Wire Line
+	9400 2350 9350 2350
+Wire Wire Line
+	9400 2450 9350 2450
+Wire Wire Line
+	9400 2550 9350 2550
+Wire Wire Line
+	10400 2150 10450 2150
+Wire Wire Line
+	10450 2150 10450 1900
+Wire Wire Line
+	10450 1900 10400 1900
+Text Label 10400 1900 2    50   ~ 0
+TGT_VDD
+Wire Wire Line
+	9050 2150 9000 2150
+Wire Wire Line
+	9050 2250 9000 2250
+Wire Wire Line
+	9050 2350 9000 2350
+Wire Wire Line
+	9050 2450 9000 2450
+Wire Wire Line
+	9050 2550 9000 2550
+Text Label 9000 2150 2    50   ~ 0
+TGT_TMS
+Text Label 9000 2250 2    50   ~ 0
+TGT_TCK
+Text Label 9000 2350 2    50   ~ 0
+TGT_TDO
+Text Label 9000 2450 2    50   ~ 0
+TGT_TDI
+Text Label 9000 2550 2    50   ~ 0
+TGT_RESET
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5CBA89A2
+P 6100 4750
+F 0 "#FLG0102" H 6100 4825 50  0001 C CNN
+F 1 "PWR_FLAG" H 6100 4923 50  0000 C CNN
+F 2 "" H 6100 4750 50  0001 C CNN
+F 3 "~" H 6100 4750 50  0001 C CNN
+	1    6100 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG0103
+U 1 1 5CBAA216
+P 6250 5250
+F 0 "#FLG0103" H 6250 5325 50  0001 C CNN
+F 1 "PWR_FLAG" H 6250 5200 50  0000 C CNN
+F 2 "" H 6250 5250 50  0001 C CNN
+F 3 "~" H 6250 5250 50  0001 C CNN
+	1    6250 5250
+	1    0    0    -1  
+$EndComp
+Connection ~ 6250 5250
+Wire Wire Line
+	6250 5250 6400 5250
+$Comp
+L power:PWR_FLAG #FLG0104
+U 1 1 5CBAB328
+P 6250 5650
+F 0 "#FLG0104" H 6250 5725 50  0001 C CNN
+F 1 "PWR_FLAG" H 6250 5600 50  0000 C CNN
+F 2 "" H 6250 5650 50  0001 C CNN
+F 3 "~" H 6250 5650 50  0001 C CNN
+	1    6250 5650
+	1    0    0    -1  
+$EndComp
+Connection ~ 6250 5650
+Wire Wire Line
+	6250 5650 6100 5650
+$Comp
+L SquantorMicrochip:MCP1702-MB U1
+U 1 1 5CBD1A3F
+P 2800 1700
+F 0 "U1" H 2800 2087 60  0000 C CNN
+F 1 "MCP1702-MB" H 2800 1981 60  0000 C CNN
+F 2 "SquantorIC:SOT89-ViaTab-Microchip-MB" H 2800 1700 60  0001 C CNN
+F 3 "" H 2800 1700 60  0001 C CNN
+	1    2800 1700
+	1    0    0    -1  
+$EndComp
+Text Label 3150 1700 0    50   ~ 0
+VBUS_FILT
+Wire Wire Line
+	3150 1700 3100 1700
+Wire Wire Line
+	2450 1700 2500 1700
+Text Label 1550 900  0    50   ~ 0
 USB_D-
-Text Label 1450 1350 0    50   ~ 0
-USB_D+
 $EndSCHEMATC

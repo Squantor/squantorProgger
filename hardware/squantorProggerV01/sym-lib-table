@@ -28,5 +28,4 @@
   (lib (name SquantorWinbond)(type Legacy)(uri ${KIPRJMOD}/../squantorPcbLibrary/SquantorWinbond.lib)(options "")(descr ""))
   (lib (name SquantorWCH)(type Legacy)(uri /home/abilos/projects/public/squantorProgger/hardware/squantorPcbLibrary/SquantorWCH.lib)(options "")(descr ""))
   (lib (name SquantorHoltek)(type Legacy)(uri /home/abilos/projects/public/squantorProgger/hardware/squantorPcbLibrary/SquantorHoltek.lib)(options "")(descr ""))
-  (lib (name squantorProggerV01-rescue)(type Legacy)(uri ${KIPRJMOD}/squantorProggerV01-rescue.lib)(options "")(descr ""))
 )
