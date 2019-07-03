@@ -458,4 +458,42 @@ NoConn ~ 2600 1150
 NoConn ~ 2600 1250
 Wire Wire Line
 	5200 2950 5250 2950
+$Comp
+L Device:C C?
+U 1 1 5D1D36E6
+P 4800 850
+F 0 "C?" V 4548 850 50  0000 C CNN
+F 1 "2.2uF" V 4639 850 50  0000 C CNN
+F 2 "SquantorRcl:C_0805" H 4838 700 50  0001 C CNN
+F 3 "~" H 4800 850 50  0001 C CNN
+	1    4800 850 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5D1D44ED
+P 4800 1100
+F 0 "C?" V 4960 1100 50  0000 C CNN
+F 1 "2.2uF" V 5051 1100 50  0000 C CNN
+F 2 "SquantorRcl:C_0805" H 4838 950 50  0001 C CNN
+F 3 "~" H 4800 1100 50  0001 C CNN
+	1    4800 1100
+	0    1    1    0   
+$EndComp
+Text Label 5000 850  0    50   ~ 0
+VSS
+Text Label 5000 1100 0    50   ~ 0
+VSS
+Wire Wire Line
+	5000 850  4950 850 
+Wire Wire Line
+	4950 1100 5000 1100
+Text Label 4600 850  2    50   ~ 0
+VDD_TARGET
+Text Label 4600 1100 2    50   ~ 0
+VDD_PROG
+Wire Wire Line
+	4600 850  4650 850 
+Wire Wire Line
+	4650 1100 4600 1100
 $EndSCHEMATC
