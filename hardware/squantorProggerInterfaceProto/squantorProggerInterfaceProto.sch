@@ -19,7 +19,7 @@ L SquantorLabels:VYYYYMMDD N2
 U 1 1 5A1357A5
 P 850 7700
 F 0 "N2" H 850 7800 60  0000 C CNN
-F 1 "20190703" H 850 7700 60  0000 C CNN
+F 1 "20190704" H 850 7700 60  0000 C CNN
 F 2 "SquantorLabels:Label_version" H 850 7700 60  0001 C CNN
 F 3 "" H 850 7700 60  0001 C CNN
 	1    850  7700
@@ -31,7 +31,7 @@ U 1 1 5A135869
 P 850 7350
 F 0 "N1" H 850 7500 60  0000 C CNN
 F 1 "OHWLOGO" H 850 7200 60  0000 C CNN
-F 2 "Symbols:OSHW-Symbol_6.7x6mm_SilkScreen" H 850 7350 60  0001 C CNN
+F 2 "Symbol:OSHW-Logo_5.7x6mm_SilkScreen" H 850 7350 60  0001 C CNN
 F 3 "" H 850 7350 60  0001 C CNN
 	1    850  7350
 	1    0    0    -1  
@@ -434,7 +434,7 @@ U 1 1 5D1FB563
 P 1050 1400
 F 0 "J1" H 1083 2215 50  0000 C CNN
 F 1 "JTAG_interface_proto_input" H 1083 2124 50  0000 C CNN
-F 2 "SquantorConnectors:Header-0254-1X08-H010" H 1100 1400 50  0001 C CNN
+F 2 "SquantorConnectorsNamed:JTAG-interface-proto-input" H 1100 1400 50  0001 C CNN
 F 3 "" H 1100 1400 50  0001 C CNN
 	1    1050 1400
 	1    0    0    -1  
@@ -445,7 +445,7 @@ U 1 1 5D1FD748
 P 3000 1100
 F 0 "J2" H 2682 1046 50  0000 R CNN
 F 1 "JTAG_interface_proto_output" H 2682 955 50  0000 R CNN
-F 2 "SquantorConnectors:Header-0254-1X08-H010" H 3000 1100 50  0001 C CNN
+F 2 "SquantorConnectorsNamed:JTAG-interface-proto-output" H 3000 1100 50  0001 C CNN
 F 3 "" H 3000 1100 50  0001 C CNN
 	1    3000 1100
 	-1   0    0    -1  
