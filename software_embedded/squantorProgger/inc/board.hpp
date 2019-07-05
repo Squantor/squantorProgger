@@ -24,6 +24,11 @@ SOFTWARE.
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#define UART_TX 27
+#define UART_RX 26
+
+#define TICKRATE_HZ (10)    /* 10 ticks per second */
+
 void boardInit(void);
 
 #endif

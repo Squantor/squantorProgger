@@ -21,8 +21,42 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+/*
+Contains all the board specific initialization like connections to peripherals
+etcetera.
+*/
+
 #include <board.hpp>
+#include <chip.h>
+
+const uint32_t OscRateIn = 12000000;
+const uint32_t ExtRateIn = 0;
 
 void boardInit(void)
 {
+    // setup switch matrix pinning
+    Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SWM);
+    // disable existing functionality
+    Chip_SWM_FixedPinEnable(SWM_FIXED_XTALIN, true);
+    Chip_SWM_FixedPinEnable(SWM_FIXED_XTALOUT, true);
+    // use UART0 for debug output
+    Chip_SWM_MovablePinAssign(SWM_U0_TXD_O, UART_RX);
+    Chip_SWM_MovablePinAssign(SWM_U0_RXD_I, UART_TX);
+    Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SWM);
+    // setup iocon 
+    Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_IOCON);
+    Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_IOCON);
+    // crystal clocking
+    Chip_SetupXtalClocking();
+    SystemCoreClockUpdate();
+    // Initialize GPIOs
+    Chip_GPIO_Init(LPC_GPIO_PORT);
+    // setup uart
+    Chip_UART_Init(LPC_USART0);
+    Chip_UART_ConfigData(LPC_USART0, UART_CFG_DATALEN_8 | UART_CFG_PARITY_NONE | UART_CFG_STOPLEN_1);
+    Chip_Clock_SetUSARTNBaseClockRate((115200 * 16), true);
+    Chip_UART_SetBaud(LPC_USART0, 115200);
+    Chip_UART_Enable(LPC_USART0);
+    Chip_UART_TXEnable(LPC_USART0);
 }
+
