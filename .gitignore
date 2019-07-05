@@ -4,3 +4,8 @@
 *.kicad_pcb-bak
 fp-info-cache
 
+#build specific stuff
+build/
+bin/
+*.log
+
