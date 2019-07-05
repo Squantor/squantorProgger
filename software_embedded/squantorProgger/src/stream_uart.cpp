@@ -22,30 +22,30 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 /*
-Main entry file
+Datastream that points to the user facing UART interface
 */
-#include <stdint.h>
-#include <board.hpp>
+
+#include <results.h>
 #include <stream_uart.hpp>
-#include <strings.hpp>
 #include <chip.h>
 
+const static char streamUartName[] = "uartStream";
+result writeUart(const char *c);
+result readUart(char *c);
+const datastreamChar_t streamUart = {writeUart, readUart, streamUartName};
 
-volatile uint32_t ticks = 0;
-
-extern "C"
+result writeUart(const char *c)
 {
-    void SysTick_Handler(void)
-    {
-        ticks++;
-    }
+    Chip_UART_SendBlocking(LPC_USART0, c, 1);
+    return noError;
 }
 
-int main()
+result readUart(char *c)
 {
-    boardInit();
-    dsPuts(&streamUart, strHello);
-    while (1) {
-        __WFI();
-    }
+    int readChars = Chip_UART_Read(LPC_USART0, c, 1);
+    if(readChars != 1)
+        return streamEmtpy;
+    else
+        return noError;
 }
+

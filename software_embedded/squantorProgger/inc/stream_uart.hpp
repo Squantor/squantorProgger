@@ -21,31 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-/*
-Main entry file
-*/
-#include <stdint.h>
-#include <board.hpp>
-#include <stream_uart.hpp>
-#include <strings.hpp>
-#include <chip.h>
+#ifndef STREAM_UART_HPP
+#define STREAM_UART_HPP
 
+#include <datastream.h>
 
-volatile uint32_t ticks = 0;
+extern const datastreamChar_t streamUart;
 
-extern "C"
-{
-    void SysTick_Handler(void)
-    {
-        ticks++;
-    }
-}
-
-int main()
-{
-    boardInit();
-    dsPuts(&streamUart, strHello);
-    while (1) {
-        __WFI();
-    }
-}
+#endif

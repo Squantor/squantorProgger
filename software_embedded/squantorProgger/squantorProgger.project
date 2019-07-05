@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="squantorProgger" Version="10.0.0" InternalType="">
+  <VirtualDirectory Name="inc">
+    <File Name="inc/strings.hpp"/>
+    <File Name="inc/board.hpp"/>
+    <File Name="inc/stream_uart.hpp"/>
+  </VirtualDirectory>
   <VirtualDirectory Name="src">
     <File Name="src/protoboardV000.cpp"/>
+    <File Name="src/strings.cpp"/>
+    <File Name="src/stream_uart.cpp"/>
     <File Name="src/main.cpp"/>
     <File Name="src/startup.cpp"/>
   </VirtualDirectory>
@@ -19,9 +26,6 @@
     <File Name="platform/cortexm_irqs_lpc.cpp"/>
     <File Name="platform/cortexm_irqs_standard.cpp"/>
     <File Name="platform/isr_lpc81X.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="inc">
-    <File Name="inc/board.hpp"/>
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
@@ -46,16 +50,15 @@
       <Environment EnvVarSetName="Default" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
-      <Debugger IsRemote="yes" RemoteHostName="/dev/ttyBmpGdb0" RemoteHostPort="" DebuggerPath="../../../../../../usr/bin/arm-none-eabi-gdb" IsExtended="yes">
+      <Debugger IsRemote="yes" RemoteHostName="/dev/ttyBmpGdb0" RemoteHostPort="" DebuggerPath="../../../../../../../usr/bin/arm-none-eabi-gdb" IsExtended="yes">
         <DebuggerSearchPaths/>
-        <PostConnectCommands>file bin/debug/template_microcontroller.elf
-monitor tpwr enable
+        <PostConnectCommands>file bin/debug/squantorProgger.elf
 shell sleep 1
 monitor swdp_scan
 attach 1
 set mem inaccessible-by-default off
 set {int}0x40048000 = 2
-load bin/debug/template_microcontroller.elf
+load bin/debug/squantorProgger.elf
 set {int}0x40048000 = 2
 compare-sections
 b main</PostConnectCommands>
@@ -95,16 +98,15 @@ b main</PostConnectCommands>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
-      <Debugger IsRemote="yes" RemoteHostName="/dev/ttyBmpGdb0" RemoteHostPort="" DebuggerPath="../../../../../../usr/bin/arm-none-eabi-gdb" IsExtended="yes">
+      <Debugger IsRemote="yes" RemoteHostName="/dev/ttyBmpGdb0" RemoteHostPort="" DebuggerPath="../../../../../../../usr/bin/arm-none-eabi-gdb" IsExtended="yes">
         <DebuggerSearchPaths/>
-        <PostConnectCommands>file bin/release/template_microcontroller.elf
-monitor tpwr enable
+        <PostConnectCommands>file bin/release/squantorProgger.elf
 shell sleep 1
 monitor swdp_scan
 attach 1
 set mem inaccessible-by-default off
 set {int}0x40048000 = 2
-load bin/release/template_microcontroller.elf
+load bin/release/squantorProgger.elf
 set {int}0x40048000 = 2
 compare-sections
 b main</PostConnectCommands>

@@ -37,6 +37,9 @@ void boardInit(void)
     // setup switch matrix pinning
     Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SWM);
     // disable existing functionality
+    // crystal setup
+    Chip_SWM_DisableFixedPin(SWM_FIXED_ADC8);
+    Chip_SWM_DisableFixedPin(SWM_FIXED_ADC0);
     Chip_SWM_FixedPinEnable(SWM_FIXED_XTALIN, true);
     Chip_SWM_FixedPinEnable(SWM_FIXED_XTALOUT, true);
     // use UART0 for debug output
@@ -45,6 +48,8 @@ void boardInit(void)
     Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SWM);
     // setup iocon 
     Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_IOCON);
+    Chip_IOCON_PinSetMode(LPC_IOCON, IOCON_PIO8, PIN_MODE_INACTIVE);
+    Chip_IOCON_PinSetMode(LPC_IOCON, IOCON_PIO9, PIN_MODE_INACTIVE); 
     Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_IOCON);
     // crystal clocking
     Chip_SetupXtalClocking();
@@ -58,5 +63,7 @@ void boardInit(void)
     Chip_UART_SetBaud(LPC_USART0, 115200);
     Chip_UART_Enable(LPC_USART0);
     Chip_UART_TXEnable(LPC_USART0);
+    // setup systick
+    SysTick_Config(SystemCoreClock / TICKRATE_HZ);
 }
 
