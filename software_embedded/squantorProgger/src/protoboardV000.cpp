@@ -75,6 +75,11 @@ void boardInit(void)
     Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SPI0);
     Chip_SYSCTL_PeriphReset(RESET_SPI0);
     // setup interrupts
+    // setup clocking
+    // setup delay
+    // setup configuration
+    // clear status
+    
         
     // setup systick
     SysTick_Config(SystemCoreClock / TICKRATE_HZ);
