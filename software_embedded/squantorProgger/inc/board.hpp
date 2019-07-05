@@ -27,6 +27,11 @@ SOFTWARE.
 #define UART_TX 27
 #define UART_RX 26
 
+#define JTAG_TCK    13  // using SPIO SCK
+#define JTAG_TMSI   14  // using SPI0 MISO
+#define JTAG_TMSO   15  // using SPI0 MOSI
+#define JTAG_TMSOE  10  // using SPI0 CE0
+
 #define TICKRATE_HZ (10)    /* 10 ticks per second */
 
 void boardInit(void);

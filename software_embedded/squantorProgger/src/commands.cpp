@@ -29,12 +29,15 @@ SOFTWARE.
 #include <strings.hpp>
 
 result cmdPrintVerHandler(int *argument);
+result cmdSpiTestHandler(int *argument);
 
 const char cmdPrintVer[] = "pv";
+const char cmdSpiTest[] = "ts";
 
 commandEntry_t sqProgCommands[] = 
 {
     {cmdPrintVer, cmdPrintVerHandler},
+    {cmdSpiTest, cmdSpiTestHandler},
     {NULL, NULL},
 };
 
@@ -43,6 +46,11 @@ commandEntry_t sqProgCommands[] =
 result cmdPrintVerHandler(int *argument)
 {
     dsPuts(&streamUart, strHello);
+    return noError;
+}
+
+result cmdSpiTestHandler(int *argument)
+{
     return noError;
 }
 
