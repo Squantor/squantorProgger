@@ -3,11 +3,13 @@
   <VirtualDirectory Name="inc">
     <File Name="inc/strings.hpp"/>
     <File Name="inc/board.hpp"/>
+    <File Name="inc/commands.hpp"/>
     <File Name="inc/stream_uart.hpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="src">
     <File Name="src/protoboardV000.cpp"/>
     <File Name="src/strings.cpp"/>
+    <File Name="src/commands.cpp"/>
     <File Name="src/stream_uart.cpp"/>
     <File Name="src/main.cpp"/>
     <File Name="src/startup.cpp"/>

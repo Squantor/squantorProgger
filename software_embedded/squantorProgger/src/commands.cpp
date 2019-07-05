@@ -21,48 +21,30 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-/*
-Main entry file
-*/
-#include <stdint.h>
+#include <command_mini.h>
+#include <stddef.h>
 #include <board.hpp>
+#include <chip.h>
 #include <stream_uart.hpp>
 #include <strings.hpp>
-#include <chip.h>
-#include <prompt_mini.h>
-#include <commands.hpp>
 
+result cmdPrintVerHandler(int *argument);
 
-char promptBuf[16];
-result cmdlineParse(char *cmdline);
+const char cmdPrintVer[] = "pv";
 
-promptData_t sqProgPromptData = 
+commandEntry_t sqProgCommands[] = 
 {
-    promptBuf,
-    0,
-    sizeof(promptBuf),
-    cmdlineParse,
+    {cmdPrintVer, cmdPrintVerHandler},
+    {NULL, NULL},
 };
-volatile uint32_t ticks = 0;
 
-extern "C"
+// commands may not use an argument and this is fine, ignore warning
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+result cmdPrintVerHandler(int *argument)
 {
-    void SysTick_Handler(void)
-    {
-        ticks++;
-    }
-}
-
-result cmdlineParse(char *const cmdline)
-{
-    return commandInterpret(sqProgCommands, cmdline);
-}
-
-int main()
-{
-    boardInit();
     dsPuts(&streamUart, strHello);
-    while (1) {
-        promptProcess(&sqProgPromptData, &streamUart);
-    }
+    return noError;
 }
+
+// now we want warnings on arguments missing again
+#pragma GCC diagnostic pop

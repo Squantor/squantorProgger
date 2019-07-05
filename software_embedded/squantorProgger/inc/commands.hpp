@@ -21,48 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-/*
-Main entry file
-*/
-#include <stdint.h>
-#include <board.hpp>
-#include <stream_uart.hpp>
-#include <strings.hpp>
-#include <chip.h>
-#include <prompt_mini.h>
-#include <commands.hpp>
+#ifndef COMMAND_HPP
+#define COMMAND_HPP
+#include <command_mini.h>
 
+extern commandEntry_t sqProgCommands[];
 
-char promptBuf[16];
-result cmdlineParse(char *cmdline);
-
-promptData_t sqProgPromptData = 
-{
-    promptBuf,
-    0,
-    sizeof(promptBuf),
-    cmdlineParse,
-};
-volatile uint32_t ticks = 0;
-
-extern "C"
-{
-    void SysTick_Handler(void)
-    {
-        ticks++;
-    }
-}
-
-result cmdlineParse(char *const cmdline)
-{
-    return commandInterpret(sqProgCommands, cmdline);
-}
-
-int main()
-{
-    boardInit();
-    dsPuts(&streamUart, strHello);
-    while (1) {
-        promptProcess(&sqProgPromptData, &streamUart);
-    }
-}
+#endif
