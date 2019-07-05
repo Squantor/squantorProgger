@@ -7,3 +7,9 @@
 [submodule "software_embedded/lpc_chip_82x"]
 	path = software_embedded/lpc_chip_82x
 	url = https://github.com/Squantor/lpc_chip_82x.git
+[submodule "software_embedded/squantorLibEmbeddedC"]
+	path = software_embedded/squantorLibEmbeddedC
+	url = https://github.com/Squantor/squantorLibEmbeddedC.git
+[submodule "software_embedded/squantorLibC"]
+	path = software_embedded/squantorLibC
+	url = https://github.com/Squantor/squantorLibC.git
