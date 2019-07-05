@@ -28,6 +28,7 @@ etcetera.
 
 #include <board.hpp>
 #include <chip.h>
+#include <nxp_spi.hpp>
 
 const uint32_t OscRateIn = 12000000;
 const uint32_t ExtRateIn = 0;
@@ -71,18 +72,10 @@ void boardInit(void)
     Chip_UART_Enable(LPC_USART0);
     Chip_UART_TXEnable(LPC_USART0);
     // setup SPI
-    Chip_SPI_Init(LPC_SPI0);
-    Chip_SPI_ConfigureSPI(LPC_SPI0, SPI_MODE_MASTER |    /* Enable master/Slave mode */
-                          SPI_CLOCK_CPHA0_CPOL0 |    /* Set Clock polarity to 0 */
-                          SPI_CFG_MSB_FIRST_EN |/* Enable MSB first option */
-                          SPI_CFG_SPOL_LO);    /* Chipselect is active low */
-
-    DelayConfigStruct.FrameDelay = 0;
-    DelayConfigStruct.PostDelay = 0;
-    DelayConfigStruct.PreDelay = 0;
-    DelayConfigStruct.TransferDelay = 0;
-    Chip_SPI_DelayConfig(LPC_SPI0, &DelayConfigStruct);
-    Chip_SPI_Enable(LPC_SPI0);
+    Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SPI0);
+    Chip_SYSCTL_PeriphReset(RESET_SPI0);
+    // setup interrupts
+        
     // setup systick
     SysTick_Config(SystemCoreClock / TICKRATE_HZ);
 }

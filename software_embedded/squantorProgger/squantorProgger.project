@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="squantorProgger" Version="10.0.0" InternalType="">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
+    </Plugin>
+  </Plugins>
   <VirtualDirectory Name="inc">
+    <File Name="inc/nxp_spi.hpp"/>
     <File Name="inc/strings.hpp"/>
     <File Name="inc/board.hpp"/>
     <File Name="inc/commands.hpp"/>
     <File Name="inc/stream_uart.hpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="src">
+    <File Name="src/nxp_spi.cpp"/>
     <File Name="src/protoboardV000.cpp"/>
     <File Name="src/strings.cpp"/>
     <File Name="src/commands.cpp"/>
@@ -14,11 +21,6 @@
     <File Name="src/main.cpp"/>
     <File Name="src/startup.cpp"/>
   </VirtualDirectory>
-  <Plugins>
-    <Plugin Name="qmake">
-      <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
-    </Plugin>
-  </Plugins>
   <VirtualDirectory Name="platform">
     <File Name="platform/isr_lpc82X.cpp"/>
     <File Name="platform/isr_STM32F103C8.cpp"/>
