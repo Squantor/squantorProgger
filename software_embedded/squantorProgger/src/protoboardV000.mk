@@ -1,6 +1,6 @@
 # update per change V0002
 # board specific settings
-MCU = LPC824
+PLATFORM = LPC824
 C_SOURCES +=
 CXX_SOURCES += src/$(BOARD).cpp
 S_SOURCES += src/aeabi_romdiv_patch.s
