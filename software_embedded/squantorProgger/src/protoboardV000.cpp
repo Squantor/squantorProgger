@@ -33,9 +33,6 @@ etcetera.
 const uint32_t OscRateIn = 12000000;
 const uint32_t ExtRateIn = 0;
 
-// static SPI_CONFIG_T ConfigStruct;
-static SPI_DELAY_CONFIG_T DelayConfigStruct;
-
 void boardInit(void)
 {
     // setup switch matrix pinning
