@@ -76,9 +76,7 @@ void boardInit(void)
     // setup delay
     // setup configuration
     // clear status
-    
-        
     // setup systick
-    SysTick_Config(SystemCoreClock / TICKRATE_HZ);
+    SysTick_Config(SystemCoreClock / TICKS_PER_S);
 }
 

@@ -6,6 +6,7 @@
     </Plugin>
   </Plugins>
   <VirtualDirectory Name="inc">
+    <File Name="inc/systick.hpp"/>
     <File Name="inc/nxp_spi.hpp"/>
     <File Name="inc/strings.hpp"/>
     <File Name="inc/board.hpp"/>
@@ -13,6 +14,7 @@
     <File Name="inc/stream_uart.hpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="src">
+    <File Name="src/systick.cpp"/>
     <File Name="src/nxp_spi.cpp"/>
     <File Name="src/protoboardV000.cpp"/>
     <File Name="src/strings.cpp"/>

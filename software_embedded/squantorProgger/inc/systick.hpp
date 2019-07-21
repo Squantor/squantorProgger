@@ -21,14 +21,32 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-/*
-Common used strings
-*/
-#ifndef STRINGS_HPP
-#define STRINGS_HPP
+#ifndef SYSTICK_HPP
+#define SYSTICK_HPP
 
-extern char strHello[];
-extern char strCrLf[];
-extern char strAlive[];
+#include <stdint.h>
+#include <board.hpp>
+
+typedef uint32_t timeTicks;
+typedef struct {
+    timeTicks timeDelayDuration;
+    // at what time to trigger
+    timeTicks timeDelayTrigger;
+} timeDelay_t;
+
+typedef enum {
+    delayNotReached, // we have not reached the delay yet
+    delayReached,    // we are at just the right time
+    delayExceeded,   // we have exceeded the delay
+} resultDelay_t;
+
+#define SEC2TICKS(sec) ((timeTicks)(sec * TICKS_PER_S))
+
+extern volatile timeTicks ticks;
+
+// initialize the time delay structure
+void timeDelayInit(timeDelay_t *delayData, timeTicks delay);
+// non blocking check if we have a reached a time interval
+resultDelay_t timeDelayCheck(timeDelay_t *delayData);
 
 #endif

@@ -31,6 +31,7 @@ Main entry file
 #include <chip.h>
 #include <prompt_mini.h>
 #include <commands.hpp>
+#include <systick.hpp>
 
 
 char promptBuf[16];
@@ -43,15 +44,6 @@ promptData_t sqProgPromptData =
     sizeof(promptBuf),
     cmdlineParse,
 };
-volatile uint32_t ticks = 0;
-
-extern "C"
-{
-    void SysTick_Handler(void)
-    {
-        ticks++;
-    }
-}
 
 result cmdlineParse(char *const cmdline)
 {
@@ -60,9 +52,15 @@ result cmdlineParse(char *const cmdline)
 
 int main()
 {
+    timeDelay_t printDelay;
     boardInit();
+    timeDelayInit(&printDelay, SEC2TICKS(1));
     dsPuts(&streamUart, strHello);
     while (1) {
         promptProcess(&sqProgPromptData, &streamUart);
+        if(timeDelayCheck(&printDelay) != delayNotReached)
+        {
+            dsPuts(&streamUart, strAlive);
+        }
     }
 }

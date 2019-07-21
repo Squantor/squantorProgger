@@ -27,5 +27,6 @@ Common used strings
 
 #include <strings.h>
 
-char strHello[] = "Squantor Progger V000\r\n";
-char strCrLf[] = "\r\n";
+char strHello[] = "Squantor Progger V000\n";
+char strLf[] = "\n";
+char strAlive[] = "alive\n";

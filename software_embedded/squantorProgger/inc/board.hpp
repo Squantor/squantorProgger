@@ -32,7 +32,7 @@ SOFTWARE.
 #define JTAG_TMSO   15  // using SPI0 MOSI
 #define JTAG_TMSOE  10  // using SPI0 CE0
 
-#define TICKRATE_HZ (10)    /* 10 ticks per second */
+#define TICKS_PER_S (10)
 
 void boardInit(void);
 

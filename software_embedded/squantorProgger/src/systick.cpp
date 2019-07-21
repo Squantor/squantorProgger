@@ -21,14 +21,38 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-/*
-Common used strings
-*/
-#ifndef STRINGS_HPP
-#define STRINGS_HPP
 
-extern char strHello[];
-extern char strCrLf[];
-extern char strAlive[];
+#include <systick.hpp>
 
-#endif
+volatile timeTicks ticks = 0;
+
+extern "C"
+{
+    void SysTick_Handler(void)
+    {
+        ticks++;
+    }
+}
+
+// initialize a time delay structure/object
+void timeDelayInit(timeDelay_t *delayData, timeTicks delay)
+{
+    delayData->timeDelayDuration = delay;
+    delayData->timeDelayTrigger = ticks + delayData->timeDelayDuration;
+}
+
+resultDelay_t timeDelayCheck(timeDelay_t *delayData)
+{
+    if(delayData->timeDelayTrigger > ticks)
+        return delayNotReached;
+    else if(delayData->timeDelayTrigger == ticks)
+    {
+        delayData->timeDelayTrigger = ticks + delayData->timeDelayDuration;
+        return delayReached;
+    }
+    else 
+    {
+        delayData->timeDelayTrigger = ticks + delayData->timeDelayDuration;
+        return delayExceeded;
+    }
+}
