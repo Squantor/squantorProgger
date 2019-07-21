@@ -28,8 +28,8 @@ SOFTWARE.
 #include <stream_uart.hpp>
 #include <strings.hpp>
 
-result cmdPrintVerHandler(int *argument);
-result cmdSpiTestHandler(int *argument);
+result cmdPrintVerHandler(const char *argument);
+result cmdSpiTestHandler(const char *argument);
 
 const char cmdPrintVer[] = "pv";
 const char cmdSpiTest[] = "ts";
@@ -43,13 +43,13 @@ commandEntry_t sqProgCommands[] =
 
 // commands may not use an argument and this is fine, ignore warning
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-result cmdPrintVerHandler(int *argument)
+result cmdPrintVerHandler(const char *argument)
 {
     dsPuts(&streamUart, strHello);
     return noError;
 }
 
-result cmdSpiTestHandler(int *argument)
+result cmdSpiTestHandler(const char *argument)
 {
     return noError;
 }
