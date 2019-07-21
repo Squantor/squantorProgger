@@ -25,13 +25,13 @@ pre-clean:
 
 pre-release:
 	$(MAKE) -C ../lpc_chip_82x release MCU=LPC82X
-	$(MAKE) -C ../squantorLibC release PLATFORM=CortexM0
-	$(MAKE) -C ../squantorLibEmbeddedC release PLATFORM=CortexM0
+	$(MAKE) -C ../squantorLibC release PLATFORM=CortexM0 
+	$(MAKE) -C ../squantorLibEmbeddedC release PLATFORM=CortexM0 LIBC_INC=../squantorLibC/inc
 
 pre-debug:
 	$(MAKE) -C ../lpc_chip_82x debug MCU=LPC82X
 	$(MAKE) -C ../squantorLibC debug PLATFORM=CortexM0
-	$(MAKE) -C ../squantorLibEmbeddedC debug PLATFORM=CortexM0
+	$(MAKE) -C ../squantorLibEmbeddedC debug PLATFORM=CortexM0 LIBC_INC=../squantorLibC/inc
 
 #project hardware specific commands
 gdbusbdebug: debug
