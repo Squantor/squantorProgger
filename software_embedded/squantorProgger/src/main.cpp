@@ -52,15 +52,9 @@ result cmdlineParse(char *const cmdline)
 
 int main()
 {
-    timeDelay_t printDelay;
     boardInit();
-    timeDelayInit(&printDelay, SEC2TICKS(1));
     dsPuts(&streamUart, strHello);
     while (1) {
         promptProcess(&sqProgPromptData, &streamUart);
-        if(timeDelayCheck(&printDelay) != delayNotReached)
-        {
-            dsPuts(&streamUart, strAlive);
-        }
     }
 }
