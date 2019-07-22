@@ -27,6 +27,8 @@ SOFTWARE.
 #include <chip.h>
 #include <stream_uart.hpp>
 #include <strings.hpp>
+#include <parsedigit.h>
+#include <string.h>
 
 result cmdPrintVerHandler(const char *argument);
 result cmdSpiTestHandler(const char *argument);
@@ -49,10 +51,25 @@ result cmdPrintVerHandler(const char *argument)
     return noError;
 }
 
-result cmdSpiTestHandler(const char *argument)
-{
-    return noError;
-}
-
 // now we want warnings on arguments missing again
 #pragma GCC diagnostic pop
+
+
+result cmdSpiTestHandler(const char *argument)
+{
+    const char *s = argument;
+    unsigned int size;
+    if(parseDigit(*s, &size) != parseOk)
+        return invalidArg;
+    s++;
+    // we know bit size, now check rest
+    unsigned int data = (size / 4 + 1);
+    if(strlen(s) != data)
+        return invalidArg;
+    // we increment size so we cover a range from 1 to 16
+    size++;
+    // parse data characters
+    // transfer
+    // print result
+    return noError;
+}
