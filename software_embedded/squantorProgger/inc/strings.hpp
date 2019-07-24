@@ -28,7 +28,7 @@ Common used strings
 #define STRINGS_HPP
 
 extern char strHello[];
-extern char strCrLf[];
+extern char strNl[];
 extern char strAlive[];
 
 #endif
