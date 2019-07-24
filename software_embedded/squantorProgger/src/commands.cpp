@@ -29,6 +29,7 @@ SOFTWARE.
 #include <strings.hpp>
 #include <parsedigit.h>
 #include <string.h>
+#include <print.h>
 
 result cmdPrintVerHandler(const char *argument);
 result cmdSpiTestHandler(const char *argument);
@@ -58,18 +59,31 @@ result cmdPrintVerHandler(const char *argument)
 result cmdSpiTestHandler(const char *argument)
 {
     const char *s = argument;
-    unsigned int size;
-    if(parseDigit(*s, &size) != parseOk)
+    unsigned int bitCount;
+    
+    if(parseDigit(*s, &bitCount) != parseOk)
         return invalidArg;
     s++;
-    // we know bit size, now check rest
-    unsigned int data = (size / 4 + 1);
-    if(strlen(s) != data)
+    // we know bit count, now check rest
+    unsigned int charCount = (bitCount / 4 + 1);
+    if(strlen(s) != charCount)
         return invalidArg;
-    // we increment size so we cover a range from 1 to 16
-    size++;
+    // we increment bit count so we cover a range from 1 to 16
+    bitCount++;
     // parse data characters
+    uint16_t spiData = 0;
+    for(unsigned int i = 0; i < charCount; i++)
+    {
+        spiData = spiData << 4;
+        unsigned int data;
+        if(parseDigit(*s, &data) != parseOk)
+            return invalidArg;
+        s++;
+        spiData = spiData | (uint16_t) data;
+    }
     // transfer
+    printHexU16(&streamUart, spiData);
+    dsPuts(&streamUart, strNl);
     // print result
     return noError;
 }
