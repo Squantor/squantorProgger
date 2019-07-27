@@ -102,10 +102,12 @@ result cmdSpiTestHandler(const char *argument)
     SPI_TXDATCTL_DEASSERTNUM_SSEL(1) |
     SPI_TXDATCTL_EOT |
     SPI_TXDATCTL_FLEN(bitCount-1);
-    printHexU32(&streamUart, transfer);
-    dsPuts(&streamUart, strNl);
-    LPC_SPI0->TXDAT = transfer;
-    printHexU32(&streamUart, LPC_SPI0->RXDAT);
+    Chip_SPI_ClearStatus(LPC_SPI0, SPI_STAT_CLR_RXOV | SPI_STAT_CLR_TXUR | SPI_STAT_CLR_SSA | SPI_STAT_CLR_SSD);
+    Chip_SPI_SetControlInfo(LPC_SPI0, 8, SPI_TXCTL_ASSERT_SSEL | SPI_TXCTL_EOF);
+    while( !(Chip_SPI_GetStatus(LPC_SPI0) & SPI_STAT_TXRDY)) ;
+        LPC_SPI0->TXDATCTL = transfer;
+    while( !(Chip_SPI_GetStatus(LPC_SPI0) & SPI_STAT_RXRDY)) ;
+    printHexU32(&streamUart, LPC_SPI0->RXDAT & 0xFFFF);
     dsPuts(&streamUart, strNl);    
     // print result
     return noError;
@@ -113,6 +115,20 @@ result cmdSpiTestHandler(const char *argument)
 
 result cmdSwdEnableHandler(const char *argument)
 {
+    // check if we have valid divisor number, max 4 hex digits
+    size_t arglen = strlen(argument);
+    if((arglen == 0) || (arglen > 4))
+        return invalidArg;
+    uint16_t divisor = 0;
+    for(unsigned int i = 0; i < arglen; i++)
+    {
+        divisor = divisor << 4;
+        unsigned int data;
+        if(parseDigit(*argument, &data) != parseOk)
+            return invalidArg;
+        argument++;
+        divisor = divisor | (uint16_t) data;
+    }    
     Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SWM);
     Chip_SWM_MovablePinAssign(SWM_SPI0_SCK_IO, JTAG_TCK_GPIO);
     Chip_SWM_MovablePinAssign(SWM_SPI0_MISO_IO, JTAG_TMSI_GPIO);
@@ -126,19 +142,8 @@ result cmdSwdEnableHandler(const char *argument)
                                     SPI_CFG_MSB_FIRST_EN |
                                     SPI_CFG_SPOL_LO);
     LPC_SPI0->DLY = 0x0;
-    LPC_SPI0->DIV = 30;
+    LPC_SPI0->DIV = SPI_DIV_VAL(divisor);
     Chip_SPI_Enable(LPC_SPI0);
-    Chip_SPI_EnableLoopBack(LPC_SPI0);
-	Chip_SPI_ClearStatus(LPC_SPI0, SPI_STAT_CLR_RXOV | SPI_STAT_CLR_TXUR | SPI_STAT_CLR_SSA | SPI_STAT_CLR_SSD);
-	Chip_SPI_SetControlInfo(LPC_SPI0, 8, SPI_TXCTL_ASSERT_SSEL | SPI_TXCTL_EOF);
-    for(int i = 0; i < 100; i++)
-    {
-        uint32_t spiStatus = Chip_SPI_GetStatus(LPC_SPI0);
-        if ((spiStatus) & SPI_STAT_TXRDY)
-            LPC_SPI0->TXDAT = 0xFF & i;
-        if ((spiStatus) & SPI_STAT_RXRDY)
-            volatile uint32_t dummy = LPC_SPI0->RXDAT;
-    }
     return noError;
 }
 
