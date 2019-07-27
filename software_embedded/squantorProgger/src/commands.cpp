@@ -33,14 +33,21 @@ SOFTWARE.
 
 result cmdPrintVerHandler(const char *argument);
 result cmdSpiTestHandler(const char *argument);
+result cmdSwdEnableHandler(const char *argument);
+result cmdSwdDisableHandler(const char *argument);
 
 const char cmdPrintVer[] = "pv";
 const char cmdSpiTest[] = "ts";
+const char cmdSwdEnable[] = "swde";
+const char cmdSwdDisable[] = "swdd";
+
 
 commandEntry_t sqProgCommands[] = 
 {
     {cmdPrintVer, cmdPrintVerHandler},
     {cmdSpiTest, cmdSpiTestHandler},
+    {cmdSwdEnable,cmdSwdEnableHandler},
+    {cmdSwdDisable,cmdSwdDisableHandler},
     {NULL, NULL},
 };
 
@@ -85,5 +92,15 @@ result cmdSpiTestHandler(const char *argument)
     printHexU16(&streamUart, spiData);
     dsPuts(&streamUart, strNl);
     // print result
+    return noError;
+}
+
+result cmdSwdEnableHandler(const char *argument)
+{
+    return noError;
+}
+
+result cmdSwdDisableHandler(const char *argument)
+{
     return noError;
 }
