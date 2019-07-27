@@ -24,17 +24,19 @@ SOFTWARE.
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#include <chip.h>
+
 #define UART_TX_PIN 27
 #define UART_RX_PIN 26
 
-#define JTAG_TCK_PIN    13
-#define JTAG_TCK_GPIO   25
-#define JTAG_TMSI_PIN   14  
-#define JTAG_TMSI_GPIO  24
-#define JTAG_TMSO_PIN   15  
-#define JTAG_TMSO_GPIO  15
-#define JTAG_TMSOE_PIN  10  
-#define JTAG_TMSOE_GPIO 16
+#define JTAG_TCK_IOCON      (IOCON_PIO25)
+#define JTAG_TCK_GPIO       25  
+#define JTAG_TMSI_IOCON     (IOCON_PIO24)
+#define JTAG_TMSI_GPIO      24  
+#define JTAG_TMSO_IOCON     (IOCON_PIO15)
+#define JTAG_TMSO_GPIO      15
+#define JTAG_TMSOE_IOCON    (IOCON_PIO10)
+#define JTAG_TMSOE_GPIO     10
 
 #define TICKS_PER_S (10)
 
