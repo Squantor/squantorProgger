@@ -35,7 +35,7 @@
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
-  <Settings Type="Dynamic Library">
+  <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
         <IncludePath Value="."/>
@@ -59,15 +59,13 @@
       <Debugger IsRemote="yes" RemoteHostName="/dev/ttyBmpGdb0" RemoteHostPort="" DebuggerPath="../../../../../../../usr/bin/arm-none-eabi-gdb" IsExtended="yes">
         <DebuggerSearchPaths/>
         <PostConnectCommands>file bin/debug/squantorProgger.elf
-shell sleep 1
 monitor swdp_scan
 attach 1
 set mem inaccessible-by-default off
 set {int}0x40048000 = 2
 load bin/debug/squantorProgger.elf
 set {int}0x40048000 = 2
-compare-sections
-b main</PostConnectCommands>
+compare-sections</PostConnectCommands>
         <StartupCommands/>
       </Debugger>
       <PreBuild/>

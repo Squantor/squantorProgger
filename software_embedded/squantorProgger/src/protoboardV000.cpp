@@ -45,23 +45,24 @@ void boardInit(void)
     // use UART0 for debug output
     Chip_SWM_MovablePinAssign(SWM_U0_TXD_O, UART_RX_PIN);
     Chip_SWM_MovablePinAssign(SWM_U0_RXD_I, UART_TX_PIN);
-    // use SPI0 for TMS and TCK generation
-    Chip_SWM_MovablePinAssign(SWM_SPI0_SCK_IO, JTAG_TCK_PIN);
-    Chip_SWM_MovablePinAssign(SWM_SPI0_MISO_IO, JTAG_TMSI_PIN);
-    Chip_SWM_MovablePinAssign(SWM_SPI0_MOSI_IO, JTAG_TMSO_PIN);
-    Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL0_IO, JTAG_TMSOE_PIN);
-    Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SWM);
+    // use SPI0 for SWD 
+    //Chip_SWM_MovablePinAssign(SWM_SPI0_SCK_IO, JTAG_TCK_PIN);
+    //Chip_SWM_MovablePinAssign(SWM_SPI0_MISO_IO, JTAG_TMSI_PIN);
+    //Chip_SWM_MovablePinAssign(SWM_SPI0_MOSI_IO, JTAG_TMSO_PIN);
+    //Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL1_IO, JTAG_TMSOE_PIN);
+    //Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SWM);
     // setup iocon 
     Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_IOCON);
-    // disable all functions on crystal pins
+    // disable pullups on xtal pins
     Chip_IOCON_PinSetMode(LPC_IOCON, IOCON_PIO8, PIN_MODE_INACTIVE);
     Chip_IOCON_PinSetMode(LPC_IOCON, IOCON_PIO9, PIN_MODE_INACTIVE); 
-    Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_IOCON);
+    //Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_IOCON);
     // crystal clocking
     Chip_SetupXtalClocking();
     SystemCoreClockUpdate();
     // Initialize GPIOs
     Chip_GPIO_Init(LPC_GPIO_PORT);
+    /*
     Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TCK_GPIO, false);
     Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSO_GPIO, true);
     Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSOE_GPIO, true);
@@ -69,6 +70,7 @@ void boardInit(void)
     Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TMSO_GPIO);
     Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TMSOE_GPIO);
     Chip_GPIO_SetPinDIRInput(LPC_GPIO_PORT, 0, JTAG_TMSI_GPIO);
+    */
     // setup uart
     Chip_UART_Init(LPC_USART0);
     Chip_UART_ConfigData(LPC_USART0, UART_CFG_DATALEN_8 | UART_CFG_PARITY_NONE | UART_CFG_STOPLEN_1);
@@ -76,9 +78,6 @@ void boardInit(void)
     Chip_UART_SetBaud(LPC_USART0, 115200);
     Chip_UART_Enable(LPC_USART0);
     Chip_UART_TXEnable(LPC_USART0);
-    // setup SPI
-    Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SPI0);
-    Chip_SYSCTL_PeriphReset(RESET_SPI0);
     // setup interrupts
     // setup clocking
     // setup delay

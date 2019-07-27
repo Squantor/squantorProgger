@@ -35,19 +35,22 @@ result cmdPrintVerHandler(const char *argument);
 result cmdSpiTestHandler(const char *argument);
 result cmdSwdEnableHandler(const char *argument);
 result cmdSwdDisableHandler(const char *argument);
+result cmdGeneralTestHandler(const char *argument);
 
 const char cmdPrintVer[] = "pv";
 const char cmdSpiTest[] = "ts";
 const char cmdSwdEnable[] = "swde";
 const char cmdSwdDisable[] = "swdd";
+const char cmdGeneralTest[] = "test";
 
 
 commandEntry_t sqProgCommands[] = 
 {
     {cmdPrintVer, cmdPrintVerHandler},
     {cmdSpiTest, cmdSpiTestHandler},
-    {cmdSwdEnable,cmdSwdEnableHandler},
-    {cmdSwdDisable,cmdSwdDisableHandler},
+    {cmdSwdEnable, cmdSwdEnableHandler},
+    {cmdSwdDisable, cmdSwdDisableHandler},
+    {cmdGeneralTest, cmdGeneralTestHandler},
     {NULL, NULL},
 };
 
@@ -57,6 +60,12 @@ result cmdPrintVerHandler(const char *argument)
 {
     dsPuts(&streamUart, strHello);
     return noError;
+}
+
+result cmdGeneralTestHandler(const char *argument)
+{
+    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TCK_GPIO);
+    Chip_GPIO_SetPinToggle(LPC_GPIO_PORT, 0, JTAG_TCK_GPIO);
 }
 
 // now we want warnings on arguments missing again
@@ -89,18 +98,53 @@ result cmdSpiTestHandler(const char *argument)
         spiData = spiData | (uint16_t) data;
     }
     // transfer
-    printHexU16(&streamUart, spiData);
+    uint32_t transfer = spiData | 
+    SPI_TXDATCTL_DEASSERTNUM_SSEL(1) |
+    SPI_TXDATCTL_EOT |
+    SPI_TXDATCTL_FLEN(bitCount-1);
+    printHexU32(&streamUart, transfer);
     dsPuts(&streamUart, strNl);
+    LPC_SPI0->TXDAT = transfer;
+    printHexU32(&streamUart, LPC_SPI0->RXDAT);
+    dsPuts(&streamUart, strNl);    
     // print result
     return noError;
 }
 
 result cmdSwdEnableHandler(const char *argument)
 {
+    Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SWM);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_SCK_IO, JTAG_TCK_GPIO);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_MISO_IO, JTAG_TMSI_GPIO);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_MOSI_IO, JTAG_TMSO_GPIO);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL0_IO, JTAG_TMSOE_GPIO);
+    Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SWM);
+    Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SPI0);
+    Chip_SYSCTL_PeriphReset(RESET_SPI0);
+    Chip_SPI_ConfigureSPI(LPC_SPI0, SPI_CFG_MASTER_EN |
+                                    SPI_CLOCK_CPHA0_CPOL0 |
+                                    SPI_CFG_MSB_FIRST_EN |
+                                    SPI_CFG_SPOL_LO);
+    LPC_SPI0->DLY = 0x0;
+    LPC_SPI0->DIV = 30;
+    Chip_SPI_Enable(LPC_SPI0);
+    Chip_SPI_EnableLoopBack(LPC_SPI0);
+	Chip_SPI_ClearStatus(LPC_SPI0, SPI_STAT_CLR_RXOV | SPI_STAT_CLR_TXUR | SPI_STAT_CLR_SSA | SPI_STAT_CLR_SSD);
+	Chip_SPI_SetControlInfo(LPC_SPI0, 8, SPI_TXCTL_ASSERT_SSEL | SPI_TXCTL_EOF);
+    for(int i = 0; i < 100; i++)
+    {
+        uint32_t spiStatus = Chip_SPI_GetStatus(LPC_SPI0);
+        if ((spiStatus) & SPI_STAT_TXRDY)
+            LPC_SPI0->TXDAT = 0xFF & i;
+        if ((spiStatus) & SPI_STAT_RXRDY)
+            volatile uint32_t dummy = LPC_SPI0->RXDAT;
+    }
     return noError;
 }
 
 result cmdSwdDisableHandler(const char *argument)
 {
+    Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SPI0);
+    // reset SPI core
     return noError;
 }
