@@ -29,6 +29,7 @@ etcetera.
 #include <board.hpp>
 #include <chip.h>
 #include <nxp_spi.hpp>
+#include <stdbool.h>
 
 const uint32_t OscRateIn = 12000000;
 const uint32_t ExtRateIn = 0;
@@ -61,6 +62,13 @@ void boardInit(void)
     SystemCoreClockUpdate();
     // Initialize GPIOs
     Chip_GPIO_Init(LPC_GPIO_PORT);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TCK, false);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSO, true);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSOE, true);
+    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TCK);
+    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TMSO);
+    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TMSOE);
+    Chip_GPIO_SetPinDIRInput(LPC_GPIO_PORT, 0, JTAG_TMSI);
     // setup uart
     Chip_UART_Init(LPC_USART0);
     Chip_UART_ConfigData(LPC_USART0, UART_CFG_DATALEN_8 | UART_CFG_PARITY_NONE | UART_CFG_STOPLEN_1);
@@ -80,3 +88,7 @@ void boardInit(void)
     SysTick_Config(SystemCoreClock / TICKS_PER_S);
 }
 
+void setTck(bool value)
+{
+    
+}
