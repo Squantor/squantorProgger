@@ -35,8 +35,8 @@ SOFTWARE.
 #define JTAG_TMSI_GPIO      24  
 #define JTAG_TMSO_IOCON     (IOCON_PIO15)
 #define JTAG_TMSO_GPIO      15
-#define JTAG_TMSOE_IOCON    (IOCON_PIO10)
-#define JTAG_TMSOE_GPIO     10
+#define JTAG_TMSOE_IOCON    (IOCON_PIO16)
+#define JTAG_TMSOE_GPIO     16
 
 #define TICKS_PER_S (10)
 

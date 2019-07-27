@@ -99,15 +99,17 @@ result cmdSpiTestHandler(const char *argument)
     }
     // transfer
     uint32_t transfer = spiData | 
-    SPI_TXDATCTL_DEASSERTNUM_SSEL(1) |
+    (0xE << 16) |
     SPI_TXDATCTL_EOT |
     SPI_TXDATCTL_FLEN(bitCount-1);
     Chip_SPI_ClearStatus(LPC_SPI0, SPI_STAT_CLR_RXOV | SPI_STAT_CLR_TXUR | SPI_STAT_CLR_SSA | SPI_STAT_CLR_SSD);
-    Chip_SPI_SetControlInfo(LPC_SPI0, 8, SPI_TXCTL_ASSERT_SSEL | SPI_TXCTL_EOF);
-    while( !(Chip_SPI_GetStatus(LPC_SPI0) & SPI_STAT_TXRDY)) ;
-        LPC_SPI0->TXDATCTL = transfer;
-    while( !(Chip_SPI_GetStatus(LPC_SPI0) & SPI_STAT_RXRDY)) ;
-    printHexU32(&streamUart, LPC_SPI0->RXDAT & 0xFFFF);
+    while( !(Chip_SPI_GetStatus(LPC_SPI0) & SPI_STAT_TXRDY)) 
+        ;
+    LPC_SPI0->TXDATCTL = transfer;
+    while( !(Chip_SPI_GetStatus(LPC_SPI0) & SPI_STAT_RXRDY)) 
+        ;
+    uint16_t rxData = (uint16_t) LPC_SPI0->RXDAT & 0xFFFF;
+    printHexU32(&streamUart, rxData);
     dsPuts(&streamUart, strNl);    
     // print result
     return noError;
@@ -133,7 +135,7 @@ result cmdSwdEnableHandler(const char *argument)
     Chip_SWM_MovablePinAssign(SWM_SPI0_SCK_IO, JTAG_TCK_GPIO);
     Chip_SWM_MovablePinAssign(SWM_SPI0_MISO_IO, JTAG_TMSI_GPIO);
     Chip_SWM_MovablePinAssign(SWM_SPI0_MOSI_IO, JTAG_TMSO_GPIO);
-    Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL0_IO, JTAG_TMSOE_GPIO);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL1_IO, JTAG_TMSOE_GPIO);
     Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SWM);
     Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SPI0);
     Chip_SYSCTL_PeriphReset(RESET_SPI0);
