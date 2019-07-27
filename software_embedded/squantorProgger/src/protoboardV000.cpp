@@ -43,13 +43,13 @@ void boardInit(void)
     Chip_SWM_FixedPinEnable(SWM_FIXED_XTALIN, true);
     Chip_SWM_FixedPinEnable(SWM_FIXED_XTALOUT, true);
     // use UART0 for debug output
-    Chip_SWM_MovablePinAssign(SWM_U0_TXD_O, UART_RX);
-    Chip_SWM_MovablePinAssign(SWM_U0_RXD_I, UART_TX);
+    Chip_SWM_MovablePinAssign(SWM_U0_TXD_O, UART_RX_PIN);
+    Chip_SWM_MovablePinAssign(SWM_U0_RXD_I, UART_TX_PIN);
     // use SPI0 for TMS and TCK generation
-    Chip_SWM_MovablePinAssign(SWM_SPI0_SCK_IO, JTAG_TCK);
-    Chip_SWM_MovablePinAssign(SWM_SPI0_MISO_IO, JTAG_TMSI);
-    Chip_SWM_MovablePinAssign(SWM_SPI0_MOSI_IO, JTAG_TMSO);
-    Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL0_IO, JTAG_TMSOE);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_SCK_IO, JTAG_TCK_PIN);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_MISO_IO, JTAG_TMSI_PIN);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_MOSI_IO, JTAG_TMSO_PIN);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL0_IO, JTAG_TMSOE_PIN);
     Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SWM);
     // setup iocon 
     Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_IOCON);
@@ -62,13 +62,13 @@ void boardInit(void)
     SystemCoreClockUpdate();
     // Initialize GPIOs
     Chip_GPIO_Init(LPC_GPIO_PORT);
-    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TCK, false);
-    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSO, true);
-    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSOE, true);
-    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TCK);
-    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TMSO);
-    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TMSOE);
-    Chip_GPIO_SetPinDIRInput(LPC_GPIO_PORT, 0, JTAG_TMSI);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TCK_GPIO, false);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSO_GPIO, true);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSOE_GPIO, true);
+    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TCK_GPIO);
+    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TMSO_GPIO);
+    Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 0, JTAG_TMSOE_GPIO);
+    Chip_GPIO_SetPinDIRInput(LPC_GPIO_PORT, 0, JTAG_TMSI_GPIO);
     // setup uart
     Chip_UART_Init(LPC_USART0);
     Chip_UART_ConfigData(LPC_USART0, UART_CFG_DATALEN_8 | UART_CFG_PARITY_NONE | UART_CFG_STOPLEN_1);
@@ -90,20 +90,20 @@ void boardInit(void)
 
 void setTck(bool value)
 {
-    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TCK, value);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TCK_GPIO, value);
 }
 
 void setTmso(bool value)
 {
-    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSO, value);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSO_GPIO, value);
 }
 
 void setTmsoe(bool value)
 {
-    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSOE, value);
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSOE_GPIO, value);
 }
 
 bool getTmsi(void)
 {
-    return Chip_GPIO_GetPinState(LPC_GPIO_PORT, 0, JTAG_TMSI);
+    return Chip_GPIO_GetPinState(LPC_GPIO_PORT, 0, JTAG_TMSI_GPIO);
 }
