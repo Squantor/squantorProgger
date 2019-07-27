@@ -90,5 +90,20 @@ void boardInit(void)
 
 void setTck(bool value)
 {
-    
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TCK, value);
+}
+
+void setTmso(bool value)
+{
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSO, value);
+}
+
+void setTmsoe(bool value)
+{
+    Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, JTAG_TMSOE, value);
+}
+
+bool getTmsi(void)
+{
+    return Chip_GPIO_GetPinState(LPC_GPIO_PORT, 0, JTAG_TMSI);
 }

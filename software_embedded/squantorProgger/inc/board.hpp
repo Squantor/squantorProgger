@@ -35,5 +35,9 @@ SOFTWARE.
 #define TICKS_PER_S (10)
 
 void boardInit(void);
+void setTck(bool value);
+void setTmso(bool value);
+void setTmsoe(bool value);
+bool getTmsi(void);
 
 #endif
