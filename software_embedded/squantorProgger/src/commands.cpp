@@ -135,7 +135,7 @@ result cmdSwdEnableHandler(const char *argument)
     Chip_SWM_MovablePinAssign(SWM_SPI0_SCK_IO, JTAG_TCK_GPIO);
     Chip_SWM_MovablePinAssign(SWM_SPI0_MISO_IO, JTAG_TMSI_GPIO);
     Chip_SWM_MovablePinAssign(SWM_SPI0_MOSI_IO, JTAG_TMSO_GPIO);
-    Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL1_IO, JTAG_TMSOE_GPIO);
+    Chip_SWM_MovablePinAssign(SWM_SPI0_SSEL0_IO, JTAG_TMSOE_GPIO);
     Chip_Clock_DisablePeriphClock(SYSCTL_CLOCK_SWM);
     Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_SPI0);
     Chip_SYSCTL_PeriphReset(RESET_SPI0);
